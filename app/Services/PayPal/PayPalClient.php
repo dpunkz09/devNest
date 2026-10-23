@@ -120,7 +120,10 @@ class PayPalClient
      */
     public function captureOrder(string $paypalOrderId): array
     {
-        $response = $this->client()->post($this->baseUrl()."/v2/checkout/orders/{$paypalOrderId}/capture");
+        $response = $this->client()->post(
+            $this->baseUrl()."/v2/checkout/orders/{$paypalOrderId}/capture",
+            [],
+        );
 
         if ($response->failed()) {
             throw PayPalException::fromResponse($response);
